@@ -15,6 +15,4 @@ extern "C" void kernelMain(void* multiboot_structure, unsigned int magicnumber)
     printf("Hello World!");
     while(1);
 }
-
-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
-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
+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
