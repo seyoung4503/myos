@@ -17,3 +17,5 @@ Make own OS
 >-fno-rtti : runtime type information   
 >-fno-exceptions : 예외 처리 비활성화   
 >-fno-leading-underscore : 변수 앞 "_" 금지 옵션     
+
+* linker script 작성
