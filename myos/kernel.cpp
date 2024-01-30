@@ -10,8 +10,10 @@ void printf(char* str)
 }
 
 
-void kernelMain(void* multiboot_structure, unsigned int magicnumber)
+extern "C" void kernelMain(void* multiboot_structure, unsigned int magicnumber)
 {
     printf("Hello World!");
     while(1);
 }
+
+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
