@@ -1,14 +1,14 @@
 # myos
 Make own OS
 
-# 24.1.29
-Makefile 추가
+### 24.1.29
+* Makefile 추가
 
-# 24.1.30
-loader.s   
-printf 라이브러리 추가   
-Makefile GPP 옵션 추가    
-GPPPARAMS = -m32 -fno-use-cxa-atexit -nostdlib -fno-builtin -fno-rtti -fno-exceptions -fno-leading-underscore   
+### 24.1.30
+* loader.s   
+* printf 라이브러리 추가   
+* Makefile GPP 옵션 추가    
+>GPPPARAMS = -m32 -fno-use-cxa-atexit -nostdlib -fno-builtin -fno-rtti -fno-exceptions -fno-leading-underscore   
 
 >-m32 : 32bit 환경빌드   
 >-fno-use-cxa-atexit : 메모리 관리 관련(옵션이 삭제되었을 수 있음)   
