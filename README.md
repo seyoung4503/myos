@@ -45,10 +45,10 @@ Make own OS
 > 유저영역(Code, Data segment)과 kernel 영역을 구분함: 악성 코드가 특정 영역으로 점프하는 것을 방지한다.
 
 * Global Descripter Table
-> Starting point(Pointer in to the Ram)
-> length
-> flags
-entries : 8 byte
+> Starting point(Pointer in to the Ram)   
+> length   
+> flags   
+entries : 8 byte   
     7   :             6            :         5         :         4        :        3 ,2       :     1, 0 
 1 (Ptr) : 0.5 (flag) : 0.5 (limit) : 1 (Access Rights) : 1 (Expended Ptr) : 2 (Starting Ptr) : 2 (length)
    
