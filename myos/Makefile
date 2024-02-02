@@ -33,3 +33,5 @@ mykernel.iso: mykernel.bin
 
 run: mykernel.iso
 	VirtualBox --startvm "My Operating System" & 
+
+
