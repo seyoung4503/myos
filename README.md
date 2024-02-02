@@ -49,7 +49,7 @@ Make own OS
 > length   
 > flags   
 entries : 8 byte   
-    7   :             6            :         5         :         4        :        3 ,2       :     1, 0 
+    7   :             6            :         5         :         4        :        3 ,2       :     1, 0    
 1 (Ptr) : 0.5 (flag) : 0.5 (limit) : 1 (Access Rights) : 1 (Expended Ptr) : 2 (Starting Ptr) : 2 (length)
    
 
