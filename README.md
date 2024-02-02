@@ -5,7 +5,7 @@ Make own OS
 * Makefile 추가
 
 ### 24.1.30
-* loader.s   
+* loader.s 추가
 * printf 라이브러리 추가   
 * Makefile GPP 옵션 추가    
 >GPPPARAMS = -m32 -fno-use-cxa-atexit -nostdlib -fno-builtin -fno-rtti -fno-exceptions -fno-leading-underscore   
@@ -18,4 +18,16 @@ Make own OS
 >-fno-exceptions : 예외 처리 비활성화   
 >-fno-leading-underscore : 변수 앞 "_" 금지 옵션     
 
-* linker script 작성
+* linker script 작성   
+> start_ctors, end_ctors : 구조체 선언   
+> kernelMain 등 함수 앞 extern "C" 추가   
+
+### 24.1.31
+* Makefile mykernel.iso 부분 추가   
+> iso : 이미지 파일   
+* kernel.cpp CallConstructor() 함수 추가
+> CallConstructor()는 start_ctors, end_ctors 사이에 실행된다.   
+
+   
+* My Operating System 첫 부팅 성공
+
