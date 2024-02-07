@@ -13,9 +13,6 @@ objects = loader.o gdt.o port.o kernel.o
 mykernel.bin: linker.ld $(objects)
 	ld $(LDPARAMS) -T $< -o $@ $(objects)
 
-install: mykernel.bin
-	sudo cp $< /boot/mykernel.bin
-
 mykernel.iso: mykernel.bin
 	mkdir iso
 	mkdir iso/boot
@@ -35,4 +32,10 @@ run: mykernel.iso
 	(killall VirtualBox && sleep 1) || true
 	VirtualBox --startvm "My Operating System" & 
 
+install: mykernel.bin
+	sudo cp $< /boot/mykernel.bin
+
+.PHONY: clean
+clean:
+	rm -f $(objects) mykernel.bin mykernel.iso
 

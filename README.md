@@ -58,3 +58,6 @@ entries : 8 byte
 * IDT 추가   
 > Interrupt Descriptor Table 정의   
 > 키보드 인터럽트 등 여러 인터럽트시에 cpu에게 어디로 점프할 지 알려주는 테이블
+
+### 24.2.07
+* Makefile make clean 추가
