@@ -54,14 +54,26 @@ entries : 8 byte
 1 (Ptr) : 0.5 (flag) : 0.5 (limit) : 1 (Access Rights) : 1 (Expended Ptr) : 2 (Starting Ptr) : 2 (length)
    
 
+### 24.2.07
+* Makefile make clean 추가   
+* printf 수정
+> 이전의 32bit 컴퓨터(가령 도스)는 문자를 80 x 25 행 넣을 수 있었다. 이에 따라 printf를 수정함   
+좋은 방법은 아니지만 문자를 화면에 다 채우면 화면을 초기화한다.   
+> '\n' 문자열의 경우 줄바꿈 구현   
 
 * IDT 추가   
 > Interrupt Descriptor Table 정의   
 > 키보드 인터럽트 등 여러 인터럽트시에 cpu에게 어디로 점프할 지 알려주는 테이블
 
-### 24.2.07
-* Makefile make clean 추가   
-* printf 수정
-> 이전의 32bit 컴퓨터(가령 도스)는 문자를 80 x 25 행 넣을 수 있었다. 이에 따라 printf를 수정함   
-좋은 방법은 아니지만 문자를 화면에 다 채우면 화면을 초기화한다.
-> '\n' 문자열의 경우 줄바꿈 구현
+uint8_t interrupt number    
+void*   handler : RAM으로 점프할 주소   
+        flags   
+        segment : 프로세서가 세그먼트 영역을 바꿀때 (ex: user(code) -> kernel(handler)) 사용    
+        accessright : 엑세스 권한(0:kernel space, 3: userspace)   
+
+* 주의할 점: interrupt number는 어떤 함수의 파라미터로 사용할 수 없음.   
+왜냐하면, 파라미터로 사용된다는 것은 cpu가 스택에다 push 해야 한다는 의미이고, cpu는 이 스택을 사용하는 것이 안전한 것인지 모르기 때문이다.   
+   
+* 해결법 : 모든 인터럽트에 대해서 어셈블러로 handler를 작성해주면 된다. 이 주솟값들은 cpu가 신뢰할 수 있고, loader.s에서 kernelMain으로 점프했던 것처럼 어셈블러에서 cpp 코드로 점프하도록 구현한다.   
+이것을 어셈블러 매크로로 자동생성 될 수 있게 만든다.   
+
