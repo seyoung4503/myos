@@ -17,7 +17,7 @@ void InterruptManager::SetInterruptDescriptorTableEntry(
     interruptDescriptorTable[interruptNumber].handlerAddressLowBits = ((uint32_t)handler) & 0xFFFF;
     interruptDescriptorTable[interruptNumber].handlerAddressHighBits = ((uint32_t)handler >> 16) & 0xFFFF;
     interruptDescriptorTable[interruptNumber].gdt_codeSegmentSelector = codeSegmentSelectorOffset;
-    interruptDescriptorTable[interruptNumber].access = IDT_DESC_PRESET | DescriptorType | ((DescriptorPrivilegeLevel&3) << 5);
+    interruptDescriptorTable[interruptNumber].access = IDT_DESC_PRESET | DescriptorType | ((DescriptorPrivilegeLevel & 3) << 5);
     interruptDescriptorTable[interruptNumber].reserved = 0;
 }
 
