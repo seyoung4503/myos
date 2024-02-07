@@ -76,4 +76,11 @@ void*   handler : RAM으로 점프할 주소
    
 * 해결법 : 모든 인터럽트에 대해서 어셈블러로 handler를 작성해주면 된다. 이 주솟값들은 cpu가 신뢰할 수 있고, loader.s에서 kernelMain으로 점프했던 것처럼 어셈블러에서 cpp 코드로 점프하도록 구현한다.   
 이것을 어셈블러 매크로로 자동생성 될 수 있게 만든다.   
+> nm interrupts.o 를 실행하여 컴파일러가 만든 인터럽트 핸들러 이름을 얻고, interruptstubs.s에 넣는다. 원한다면 extern "C"를 사용해서 프로그래머가 이름을 정해줄 수 있다.   
+
+    
+* interrupt 가 일어났음을 cpu에게 알려야 함   
+> 하드웨어와 idt 초기화 이후 interrupt 실행   
+
+
 
