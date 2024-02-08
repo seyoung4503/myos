@@ -26,11 +26,19 @@ HandleInterruptRequest 0x01
 
 int_bottom:
 
-    pusha
-    pushl %ds
-    pushl %es
-    pushl %fs
-    pushl %gs
+    # pusha
+    # pushl %ds
+    # pushl %es
+    # pushl %fs
+    # pushl %gs
+    pushl %ebp
+    pushl %edi
+    pushl %esi
+
+    pushl %edx
+    pushl %ecx
+    pushl %ebx
+    pushl %eax
 
     push %esp
     push (interruptnumber)
@@ -39,11 +47,22 @@ int_bottom:
     # 앞의 push연산을 clean
     movl %eax, %esp
 
-    popl %gs
-    popl %fs
-    popl %es
-    popl %ds
-    popa
+    popl %eax
+    popl %ebx
+    popl %ecx
+    popl %edx
+
+    popl %esi
+    popl %edi
+    popl %ebp
+
+    add $4, %esp
+
+    # popl %gs
+    # popl %fs
+    # popl %es
+    # popl %ds
+    # popa
     
 
 
