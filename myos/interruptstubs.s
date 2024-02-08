@@ -5,6 +5,8 @@
 
 .extern  _ZN16InterruptManager15handleInterruptEhj
 
+.global _ZN16InterruptManager22IgnoreInterruptRequestEv
+
 .macro HandleException num
 .global _ZN16InterruptManager16HandleException\num\()Ev
 _ZN16InterruptManager16HandleException\num\()Ev:
@@ -44,7 +46,7 @@ int_bottom:
     popa
     
 
-.global _ZN16InterruptManager22IgnoreInterruptRequestEv
+
 _ZN16InterruptManager22IgnoreInterruptRequestEv:
     iret
 
