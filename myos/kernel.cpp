@@ -21,6 +21,7 @@ void printf(char* str)
             default:
                 VideoMemory[80*y+x] = (VideoMemory[80*y+x] & 0x0F00) | str[i];
                 x++;
+                break;
         }
 
         if (x >= 80)
@@ -58,9 +59,12 @@ extern "C" void kernelMain(const void* multiboot_structure, uint32_t /*magicnumb
     printf("\nHello World!");
 
     GlobalDescriptorTable gdt;
+    printf("Hello World!3\n");
     InterruptManager interrupts(&gdt);
+    printf("Hello World!4\n");
 
     interrupts.Activate();
+    printf("Hello World!5\n");
 
     while(1);
 }
