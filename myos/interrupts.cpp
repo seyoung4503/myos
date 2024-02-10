@@ -67,6 +67,7 @@ InterruptManager::~InterruptManager()
 
 void InterruptManager::Activate()
 {
+    printf(" In activate");
     asm("sti");
 }
 
