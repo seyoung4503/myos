@@ -27,11 +27,11 @@ HandleInterruptRequest 0x01
 
 int_bottom:
 
-    pusha
-    pushl %ds
-    pushl %es
-    pushl %fs
-    pushl %gs
+    #pusha
+    #pushl %ds
+    #pushl %es
+    #pushl %fs
+    #pushl %gs
     # ; pushl %ebp
     # ; pushl %edi
     # ; pushl %esi
@@ -41,7 +41,7 @@ int_bottom:
     # ; pushl %ebx
     # ; pushl %eax
 
-    pushl %esp
+    push %esp
     push (interruptnumber)
     call _ZN16InterruptManager15HandleInterruptEhj
     # addl %5, %esp
@@ -59,11 +59,11 @@ int_bottom:
 
     # ; add $4, %esp
 
-    popl %gs
-    popl %fs
-    popl %es
-    popl %ds
-    popa
+    #popl %gs
+    #popl %fs
+    #popl %es
+    #popl %ds
+    #popa
     
 
 
