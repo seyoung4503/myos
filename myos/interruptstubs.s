@@ -3,7 +3,7 @@
 
 .section .text
 
-.extern  _ZN16InterruptManager15handleInterruptEhj
+.extern  _ZN16InterruptManager15HandleInterruptEhj
 
 .global _ZN16InterruptManager22IgnoreInterruptRequestEv
 
@@ -42,7 +42,7 @@ int_bottom:
 
     push %esp
     push (interruptnumber)
-    call _ZN16InterruptManager15handleInterruptEhj
+    call _ZN16InterruptManager15HandleInterruptEhj
     # addl %5, %esp
     # 앞의 push연산을 clean
     movl %eax, %esp

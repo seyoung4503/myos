@@ -64,7 +64,7 @@ extern "C" void kernelMain(const void* multiboot_structure, uint32_t /*magicnumb
     printf("Hello World!4\n");
 
     // asm("sti");
-    // interrupts.Activate();
+    interrupts.Activate();
     printf("Hello World!5\n");
 
     while(1);

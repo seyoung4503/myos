@@ -48,7 +48,7 @@ public:
 
     void Activate();
 
-    static uint32_t handleInterrupt(uint8_t interruptNumber, uint32_t esp);
+    static uint32_t HandleInterrupt(uint8_t interruptNumber, uint32_t esp);
 
     static void IgnoreInterruptRequest();
     static void HandleInterruptRequest0x00();
