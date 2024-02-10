@@ -40,7 +40,7 @@ int_bottom:
     # ; pushl %ebx
     # ; pushl %eax
 
-    push %esp
+    pushl %esp
     push (interruptnumber)
     call _ZN16InterruptManager15HandleInterruptEhj
     # addl %5, %esp
