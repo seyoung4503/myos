@@ -82,5 +82,14 @@ void*   handler : RAM으로 점프할 주소
 * interrupt 가 일어났음을 cpu에게 알려야 함   
 > 하드웨어와 idt 초기화 이후 interrupt 실행   
 
+### 24.2.10
+gdt error 수정
+
+### 24.2.12
+* ActiveInterruptManager 추가 : 인터럽트 된 작업 확인
+* Deactivate 함수 추가 : 인터럽트 끄는 함수
+* DoHandleInterrupt 함수 추간
+* timer interrupt 추가 (0x20)
+
 
 
