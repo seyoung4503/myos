@@ -69,15 +69,36 @@ InterruptManager::~InterruptManager()
 
 void InterruptManager::Activate()
 {
-    printf(" In activate");
+    if (ActiveInterruptManager != 0)
+        ActiveInterruptManager->Deactivate();
+    ActiveInterruptManager = this;
     asm("sti");
 }
 
+void InterruptManager::Deactivate()
+{
+    if (ActiveInterruptManager == this)
+    {
+        ActiveInterruptManager = 0;
+        asm("cli");
+    }
+}
+
+
 uint32_t InterruptManager::HandleInterrupt(uint8_t interruptNumber, uint32_t esp)
 {
-
-    printf(" INTERRPUT");
+    if(ActiveInterruptManager != 0)
+    {
+        return ActiveInterruptManager->DoHandleInterrupt(interruptNumber, esp);
+    }
+    // printf(" INTERRPUT");
 
     return esp;
 }
 
+uint32_t InterruptManager::DoHandleInterrupt(uint8_t interruptNumber, uint32_t esp)
+{   
+    printf(" INTERRPUT");
+
+    return esp;
+}
