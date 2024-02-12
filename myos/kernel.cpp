@@ -2,6 +2,7 @@
 #include "types.h"
 #include "gdt.h"
 #include "interrupts.h"
+#include "keyboard.h"
 
 void printf(char* str)
 {
@@ -59,14 +60,13 @@ extern "C" void kernelMain(const void* multiboot_structure, uint32_t /*magicnumb
     printf("\nHello World!\n");
 
     GlobalDescriptorTable gdt;
-    printf("Hello World!3\n");
     InterruptManager interrupts(&gdt);
-    printf("Hello World!4\n");
 
-    // asm("sti");
+    KeyboardDriver keyboard(&interrupts);
+
     interrupts.Activate();
-    printf("Hello World!5\n");
+
 
     while(1);
-    printf("Hello World!6\n");
+
 }
