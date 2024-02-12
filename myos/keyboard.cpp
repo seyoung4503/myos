@@ -34,6 +34,7 @@ uint32_t KeyboardDriver::HandleInterrupt(uint32_t esp)
         switch (key)
         {
             case 0xFA: break;
+            case 0x1E: printf("a"); break;
             case 0x45:
             case 0xC5:
                 break;
