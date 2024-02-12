@@ -90,6 +90,7 @@ gdt error 수정
 * Deactivate 함수 추가 : 인터럽트 끄는 함수
 * DoHandleInterrupt 함수 추간
 * timer interrupt 추가 (0x20)
+* Keyboard driver 추가
 
 
 
