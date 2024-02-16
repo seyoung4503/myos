@@ -59,7 +59,7 @@ uint32_t KeyboardDriver::HandleInterrupt(uint32_t esp)
         case 0x19: if(Shift) printf("P"); else printf("p"); break;
         case 0x1A: if(Shift) printf("{"); else printf("["); break;
         case 0x1B: if(Shift) printf("}"); else printf("]"); break;
-        case 0x2B: if(Shift) printf("|"); else printf("\""); break;
+        case 0x2B: if(Shift) printf("|"); else printf("\\"); break;
 
         case 0x1E: if(Shift) printf("A"); else printf("a"); break;
         case 0x1F: if(Shift) printf("S"); else printf("s"); break;
