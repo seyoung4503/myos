@@ -92,5 +92,8 @@ gdt error 수정
 * timer interrupt 추가 (0x20)
 * Keyboard driver 추가
 
+### 24.2.16
+* Keyboard 모든 키 업데이트
+* makefile -Wno-write-strings 옵션 추가
 
 
