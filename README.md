@@ -96,4 +96,7 @@ gdt error 수정
 * Keyboard 모든 키 업데이트
 * makefile -Wno-write-strings 옵션 추가
 
+### 24.2.22
+* Mouse 업데이트
+* Mouse interrupt 추가
 
