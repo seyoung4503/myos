@@ -8,13 +8,22 @@ MouseDriver::MouseDriver(InterruptManager* manager)
 dataport(0x60),
 commandport(0x64)
 {
+}
+
+MouseDriver::~MouseDriver()
+{
+}
+
+void MouseDriver::Activate()
+{
+    static uint16_t* VideoMemory = (uint16_t*)0xb8000;
     offset = 0;
     buttons = 0;
-
-    static uint16_t* VideoMemory = (uint16_t*)0xb8000;
-    VideoMemory[80*12+40] = ((VideoMemory[80*12+40] & 0xF000) >> 4)
-                        | ((VideoMemory[80*12+40] & 0x0F00) << 4)
-                        |  (VideoMemory[80*12+40] & 0x00FF);
+    x = 40;
+    y = 12;
+    VideoMemory[80*y+x] = ((VideoMemory[80*y+x] & 0xF000) >> 4)
+                        | ((VideoMemory[80*y+x] & 0x0F00) << 4)
+                        |  (VideoMemory[80*y+x] & 0x00FF);
 
     commandport.Write(0xA8); // activate interrupts
     commandport.Write(0x20); // get current state
@@ -27,19 +36,13 @@ commandport(0x64)
     dataport.Read();
 }
 
-MouseDriver::~MouseDriver()
-{
-}
-
-void printf(char*);
-
 uint32_t MouseDriver::HandleInterrupt(uint32_t esp)
 {
     uint8_t status = commandport.Read();
     if(!(status & 0x20))
         return esp;
     
-    static int8_t x = 40, y = 12;
+    // static int8_t x = 40, y = 12;
 
     buffer[offset] = dataport.Read();
     offset = (offset + 1) % 3;
@@ -47,7 +50,7 @@ uint32_t MouseDriver::HandleInterrupt(uint32_t esp)
         // buffer[1] : x axis movement, buffer[2] : y axis movement
     if(offset == 0)
     {
-        // color flip when dragged
+        // color flip when mouse on the videomemory
         static uint16_t* VideoMemory = (uint16_t*)0xb8000;
 
         VideoMemory[80*y+x] = ((VideoMemory[80*y+x] & 0xF000) >> 4)
