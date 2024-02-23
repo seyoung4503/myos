@@ -69,6 +69,43 @@ class PrintKeyboardEventHandler : public KeyboardEventHandler
         }
 };
 
+class MouseToConsole : public MouseEventHandler
+{
+    int8_t x, y;
+public:
+
+    MouseToConsole()
+    {
+        uint16_t* VideoMemory = (uint16_t*)0xb8000;
+        x = 40;
+        y = 12;
+        VideoMemory[80*y+x] = ((VideoMemory[80*y+x] & 0xF000) >> 4)
+                            | ((VideoMemory[80*y+x] & 0x0F00) << 4)
+                            |  (VideoMemory[80*y+x] & 0x00FF);
+    }
+
+    void OnMouseMove(int xoffset, int yoffset)
+    {
+            // color flip when mouse on the videomemory
+            static uint16_t* VideoMemory = (uint16_t*)0xb8000;
+
+            VideoMemory[80*y+x] = ((VideoMemory[80*y+x] & 0xF000) >> 4)
+                                | ((VideoMemory[80*y+x] & 0x0F00) << 4)
+                                |  (VideoMemory[80*y+x] & 0x00FF);
+
+            x += xoffset;
+            if(x < 0) x = 0;
+            if(x >= 80) x = 79;
+
+            y -= yoffset;
+            if(y < 0) y = 0;
+            if (y >= 25) y = 24;
+
+            VideoMemory[80*y+x] = ((VideoMemory[80*y+x] & 0xF000) >> 4)
+                                | ((VideoMemory[80*y+x] & 0x0F00) << 4)
+                                |  (VideoMemory[80*y+x] & 0x00FF);
+    }
+};
 
 
 typedef void (*constructor)();
@@ -96,7 +133,8 @@ extern "C" void kernelMain(const void* multiboot_structure, uint32_t /*magicnumb
             KeyboardDriver keyboard(&interrupts, &kbhandler);
             drvManager.AddDriver(&keyboard);
             
-            MouseDriver mouse(&interrupts);
+            MouseEventHandler mousehandler;
+            MouseDriver mouse(&interrupts, &mousehandler);
             drvManager.AddDriver(&mouse);
 
     printf("Initializing Drivers, Stage 2\n");

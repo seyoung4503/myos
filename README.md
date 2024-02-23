@@ -106,4 +106,6 @@ gdt error 수정
 * object oriented design 을 위한 wrapper class : KeyboardEventHandler 추가함
 > 모든 키에 해당하는 16진수 코드의 정의를 상위레벨에서 하지 않게 하기 위함.   
 > 왜냐하면 키보드별로 각각의 키에 대응하는 16진수가 다를 수 있기 때문이다.
+   
+* MouseEventHandler 추가 : KeyboardEventHandler와 역할 동일
 
