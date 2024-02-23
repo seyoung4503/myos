@@ -15,6 +15,7 @@ KeyboardDriver::~KeyboardDriver()
 }
 
 void printf(char*);
+void printfHex(uint8_t);
 
 void KeyboardDriver::Activate()
 {
@@ -100,15 +101,13 @@ uint32_t KeyboardDriver::HandleInterrupt(uint32_t esp)
             break;
         
         default:
-            if(key < 0x80)
-            {
-                char* foo = "KEYBOARD 0x00 ";
-                char* hex = "0123456789ABCDEF";
-                foo[11] = hex[(key >> 4) & 0x0F];
-                foo[12] = hex[key & 0x0F];
-                printf(foo);
-            }   
+
+        {
+            printf("KEYBOARD 0x ");
+            printfHex(key);
+            
             break;
+        }
             
     }
     

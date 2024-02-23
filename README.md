@@ -100,3 +100,7 @@ gdt error 수정
 * Mouse 업데이트
 * Mouse interrupt 추가
 
+### 24.2.23
+* 장치 추상화를 위한 Driver class 추가
+* hexadecimal printf 추가(kernel.cpp)
+
