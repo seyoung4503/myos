@@ -1,0 +1,76 @@
+
+.set IRQ_BASE, 0x20
+
+.section .text
+
+.extern  _ZN4myos21hardwarecommunication16InterruptManager15HandleInterruptEhj
+
+.global _ZN4myos21hardwarecommunication16InterruptManager22IgnoreInterruptRequestEv
+
+.macro HandleException num
+.global _ZN4myos21hardwarecommunication16InterruptManager16HandleException\num\()Ev
+_ZN4myos21hardwarecommunication16InterruptManager16HandleException\num\()Ev:
+    movb $\num, (interruptnumber)
+    jmp int_bottom
+.endm
+
+.macro HandleInterruptRequest num
+.global _ZN4myos21hardwarecommunication16InterruptManager26HandleInterruptRequest\num\()Ev
+_ZN4myos21hardwarecommunication16InterruptManager26HandleInterruptRequest\num\()Ev: 
+    movb $\num + IRQ_BASE, (interruptnumber)
+    jmp int_bottom
+.endm
+
+HandleInterruptRequest 0x00
+HandleInterruptRequest 0x01
+HandleInterruptRequest 0x0C
+
+
+int_bottom:
+
+    pusha
+    pushl %ds
+    pushl %es
+    pushl %fs
+    pushl %gs
+    # ; pushl %ebp
+    # ; pushl %edi
+    # ; pushl %esi
+
+    # ; pushl %edx
+    # ; pushl %ecx
+    # ; pushl %ebx
+    # ; pushl %eax
+
+    push %esp
+    push (interruptnumber)
+    call _ZN4myos21hardwarecommunication16InterruptManager15HandleInterruptEhj
+    # addl %5, %esp
+    # 앞의 push연산을 clean
+    movl %eax, %esp
+
+    # ; popl %eax
+    # ; popl %ebx
+    # ; popl %ecx
+    # ; popl %edx
+
+    # ; popl %esi
+    # ; popl %edi
+    # ; popl %ebp
+
+    # ; add $4, %esp
+
+    popl %gs
+    popl %fs
+    popl %es
+    popl %ds
+    popa
+    
+
+
+_ZN4myos21hardwarecommunication16InterruptManager22IgnoreInterruptRequestEv:
+    iret
+
+.data
+    interruptnumber: .byte 0
+

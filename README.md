@@ -109,3 +109,14 @@ gdt error 수정
    
 * MouseEventHandler, MouseToConsole class 추가 : KeyboardEventHandler와 역할 동일
 
+### 24.2.24
+* include, src : 헤더파일과 소스파일 분리
+> include/common : vector, map 와 같은 C++ standard namespace 
+> include/drivers : 키보드, 마우스 드라이버
+> include/hardwarecommunication : row data base로 low level 하드웨어와 통신   
+
+* src도 동일하게 폴더 추가해줌
+
+* namespace 추가
+
+* -Iinclude 옵션추가 : 컴파일러가 include 디렉토리 찾음
