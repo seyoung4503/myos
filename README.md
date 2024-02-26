@@ -120,3 +120,7 @@ gdt error 수정
 * namespace 추가
 
 * -Iinclude 옵션추가 : 컴파일러가 include 디렉토리 찾음
+
+
+### 24.2.26
+* PCI 추가
